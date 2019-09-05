@@ -25,6 +25,7 @@ spec:
           imagePullPolicy: Always
           command:
             - /metrics-server
+            - --source=kubernetes.summary_api:''
             - --kubelet-insecure-tls
             - --kubelet-preferred-address-types=InternalDNS,InternalIP,ExternalDNS,ExternalIP,Hostname
           volumeMounts:
