@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: unbound-deployment
+  labels:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+  creationTimestamp: "2019-08-31T23:23:03Z"
+  generation: 1
+spec:
+  replicas: 3
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: unbound
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: unbound
+    spec:
+      containers:
+        - name: unbound
+          image: 203.178.158.5:30500/wide-camp-1909/camp-dns-unbound:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: dns-udp
+              containerPort: 53
+              protocol: UDP
+            - name: dns-tcp
+              containerPort: 53
+              protocol: TCP
+          resources:
+            requests:
+              cpu: "1000m"
+          volumeMounts:
+            - name: unbound-conf
+              mountPath: "/opt/unbound/etc/unbound/"
+              readOnly: true
+            - name: rsyslogd-conf
+              mountPath: "/opt/rsyslogd/etc/"
+              readOnly: true
+      volumes:
+        - name: unbound-conf
+          configMap:
+            name: unbound-configmap
+        - name: rsyslogd-conf
+          configMap:
+            name: rsyslogd-configmap
+
