@@ -28,3 +28,16 @@ Run below installation at each hosts:
 Running ES with NFS is **not supported and known to be problematic,** also performance will be very low.  
 See: https://discuss.elastic.co/t/elasticsearch-not-able-to-use-persistent-volume/133390
 
+# 2. Horizontal Pod Autoscaling
+
+## Preparation
+First of all, to use Horizontal Pod Autoscaling, you need to deploy [wide-camp-1909/metrics-server](https://github.com/wide-camp-1909/metrics-server) in namespace kube-system.
+Run the following and you can done the preparation:
+
+```
+% git clone -b camp-master --depth 1 https://github.com/wide-camp-1909/metrics-server
+% cd metrics-server
+% kubectl apply -f deploy/1.8+/
+% kubectl describe deployment metrics-server -n kube-system
+% kubectl top nodes
+```
