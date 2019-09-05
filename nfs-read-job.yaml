@@ -1,16 +1,16 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: nfs-write-performance-test
+  name: nfs-read-performance-test
 spec:
   template:
     metadata:
-      name: nfs-write-performance-test
+      name: nfs-read-performance-test
     spec:
       containers:
         - image: ubuntu:18.04
-          name: nfs-write-performance-test
-          command: ["dd", "if=/dev/zero", "of=/mnt/pv/test.img", "bs=4G", "count=1", "oflag=dsync"]
+          name: nfs-read-performance-test
+          command: ["dd", "if=/mnt/pv/test.img", "of=/dev/null", "bs=8k"]
           volumeMounts:
             - mountPath: /mnt/pv
               name: target-nfs
