@@ -31,7 +31,7 @@ See: https://discuss.elastic.co/t/elasticsearch-not-able-to-use-persistent-volum
 # 2. Horizontal Pod Autoscaling
 
 ## Preparation
-First of all, to use Horizontal Pod Autoscaling, you need to deploy [wide-camp-1909/metrics-server](https://github.com/wide-camp-1909/metrics-server) in namespace kube-system.
+First of all, to use Horizontal Pod Autoscaling, you need to deploy [wide-camp-1909/metrics-server](https://github.com/wide-camp-1909/metrics-server) in namespace kube-system.  
 Run the following and you can done the preparation:
 
 ```
