@@ -9,7 +9,7 @@ spec:
     storage: 3Ti
   accessModes:
     - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain
+  persistentVolumeReclaimPolicy: Recycle
   nfs:
     server: 172.16.1.52
     path: /mnt/array1/dump

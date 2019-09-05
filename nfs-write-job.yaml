@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: nfs-write-performance-test
+spec:
+  template:
+    metadata:
+      name: nfs-write-performance-test
+    spec:
+      containers:
+        - image: ubuntu:18.04
+          name: nfs-write-performance-test
+          command: ["dd", "if=/dev/zero", "of=/mnt/pv/test.img", "bs=1G", "count=1", "oflag=dsync"]
+          volumeMounts:
+            - mountPath: /mnt/pv
+              name: target-nfs
+      volumes:
+        - name: target-nfs
+          persistentVolumeClaim:
+            claimName: nfs-pv-claim-test
+      restartPolicy: Never
