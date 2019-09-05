@@ -24,7 +24,7 @@ Run below installation at each hosts:
 2147479552 bytes (2.1 GB, 2.0 GiB) copied, 43.8197 s, 49.0 MB/s
 ```
 
-## ElasticSearch with NFS Backend
-Running ES with NFS is not supported and known to be problematic, also performance will very low.  
-Source: https://discuss.elastic.co/t/elasticsearch-not-able-to-use-persistent-volume/133390
+## Elasticsearch with NFS Backend
+Running ES with NFS is **not supported and known to be problematic,** also performance will be very low.  
+See: https://discuss.elastic.co/t/elasticsearch-not-able-to-use-persistent-volume/133390
 
