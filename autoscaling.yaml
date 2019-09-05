@@ -16,6 +16,9 @@ spec:
         - name: useless-app
           image: busybox
           command: ["dd", "if=/dev/zero", "of=/dev/null"]
+          resources:
+            requests:
+              cpu: 1
 
 ---
 
@@ -29,7 +32,7 @@ spec:
     kind: Deployment
     name: sample-deployment
   minReplicas: 1
-  maxReplicas: 10
+  maxReplicas: 4
   metrics:
     - type: Resource
       resource:
