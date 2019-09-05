@@ -7,6 +7,15 @@ metadata:
     deployment.kubernetes.io/revision: "1"
   creationTimestamp: "2019-08-31T23:23:03Z"
   generation: 1
+
+<<: &healthcheck-template
+  httpGet:
+    path: /healthz
+    port: 8080
+  initialDelaySeconds: 10
+  timeoutSeconds: 2
+  periodSeconds: 2
+
 spec:
   replicas: 3
   revisionHistoryLimit: 10
@@ -25,6 +34,18 @@ spec:
         app: unbound
     spec:
       containers:
+        - name: healthz
+          image: googlecontainer/exechealthz:1.2
+          imagePullPolicy: IfNotPresent
+          args:
+            - "-cmd=nslookup health.check.unbound. 127.0.0.1:53 > /dev/null"
+          ports:
+            - name: healthz
+              containerPort: 8080
+              protocol: TCP
+          resources:
+            requests:
+              cpu: "1m"
         - name: unbound
           image: 203.178.158.5:30500/wide-camp-1909/camp-dns-unbound:latest
           imagePullPolicy: IfNotPresent
@@ -38,6 +59,14 @@ spec:
           resources:
             requests:
               cpu: "1000m"
+          readinessProbe:
+            <<: *healthcheck-template
+            successThreshold: 1
+            failureThreshold: 1
+          livenessProbe:
+            <<: *healthcheck-template
+            successThreshold: 1
+            failureThreshold: 3
           volumeMounts:
             - name: unbound-conf
               mountPath: "/opt/unbound/etc/unbound/"
