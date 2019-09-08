@@ -41,3 +41,20 @@ Run the following and you can done the preparation:
 % kubectl describe deployment metrics-server -n kube-system
 % kubectl top nodes
 ```
+
+# 3. Build Docker Private Registry
+Run the following:
+```bash
+$ kubectl create secret -n camp-dns \
+          docker-registry camp-reg \
+          --docker-server="REG-IP-ADDRESS:PORT" \
+          --docker-username="USER-NAME" \
+          --docker-password="PASSWORD" \
+          -o yaml --dry-run | kubectl replace -n camp-dns --force -f -
+```
+
+After the above deployment, you can login private registry and push images:
+```bash
+$ docker login https://REG-IP-ADDRESS:PORT/v2/
+$ docker push
+```
