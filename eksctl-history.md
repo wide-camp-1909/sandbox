@@ -18,4 +18,16 @@
 [ℹ]  2 sequential tasks: { create cluster control plane "sandbox", create nodegroup "ng-e5b81515" }
 [ℹ]  building cluster stack "eksctl-sandbox-cluster"
 [ℹ]  deploying stack "eksctl-sandbox-cluster"
+[ℹ]  building nodegroup stack "eksctl-sandbox-nodegroup-ng-e5b81515"
+[ℹ]  deploying stack "eksctl-sandbox-nodegroup-ng-e5b81515"
+[✔]  all EKS cluster resource for "sandbox" had been created
+[✔]  saved kubeconfig as "/Users/mi/.kube/config"
+[ℹ]  adding role "arn:aws:iam::756340771809:role/eksctl-sandbox-nodegroup-ng-e5b81-NodeInstanceRole-O8MZ0Z2GQZ9L" to auth ConfigMap
+[ℹ]  nodegroup "ng-e5b81515" has 0 node(s)
+[ℹ]  waiting for at least 2 node(s) to become ready in "ng-e5b81515"
+[ℹ]  nodegroup "ng-e5b81515" has 2 node(s)
+[ℹ]  node "ip-192-168-19-153.ap-northeast-1.compute.internal" is ready
+[ℹ]  node "ip-192-168-29-133.ap-northeast-1.compute.internal" is ready
+[ℹ]  kubectl command should work with "/Users/mi/.kube/config", try 'kubectl get nodes'
+[✔]  EKS cluster "sandbox" in "ap-northeast-1" region is ready
 ```
