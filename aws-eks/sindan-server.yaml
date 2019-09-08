@@ -16,12 +16,12 @@ nodeGroups:
   - name: ng-1
     instanceType: t3.small
     desiredCapacity: 3
-    privateNetworking: false
+    # privateNetworking: true
     ssh:
       publicKeyPath: ~/.ssh/MASTER/mi2428.master.id_rsa.pub
   - name: ng-2
     instanceType: t3.medium
     desiredCapacity: 3
-    privateNetworking: false
+    # privateNetworking: true
     ssh:
       publicKeyPath: ~/.ssh/MASTER/mi2428.master.id_rsa.pub
