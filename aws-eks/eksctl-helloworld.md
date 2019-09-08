@@ -1,9 +1,11 @@
 ## Hello world
+
 ```bash
 % eksctl create cluster --name sandbox --region ap-northeast-1 \
 --zones ap-northeast-1a,ap-northeast-1c --nodes 2 --nodes-min 2 --nodes-max 2 \
 --node-type t3.medium --node-zones ap-northeast-1a
 ```
+
 ```txt
 [ℹ]  using region ap-northeast-1
 [ℹ]  subnets for ap-northeast-1a - public:192.168.0.0/19 private:192.168.64.0/19
@@ -30,11 +32,4 @@
 [ℹ]  node "ip-192-168-29-133.ap-northeast-1.compute.internal" is ready
 [ℹ]  kubectl command should work with "/Users/mi/.kube/config", try 'kubectl get nodes'
 [✔]  EKS cluster "sandbox" in "ap-northeast-1" region is ready
-```
-```bash
-% kubectl config get-contexts
-% kubectl --namespace kube-system create serviceaccount tiller
-% kubectl create clusterrolebinding tiller --clusterrole cluster-admin \
---serviceaccount=kube-system:tiller
-% helm init --service-account tiller --wait
 ```
