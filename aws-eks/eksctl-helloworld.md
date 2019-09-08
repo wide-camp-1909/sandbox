@@ -31,3 +31,10 @@
 [ℹ]  kubectl command should work with "/Users/mi/.kube/config", try 'kubectl get nodes'
 [✔]  EKS cluster "sandbox" in "ap-northeast-1" region is ready
 ```
+```bash
+% kubectl config get-contexts
+% kubectl --namespace kube-system create serviceaccount tiller
+% kubectl create clusterrolebinding tiller --clusterrole cluster-admin \
+--serviceaccount=kube-system:tiller
+% helm init --service-account tiller --wait
+```
