@@ -5,13 +5,19 @@
 ## Create EKS cluster
 
 ### Helloworld
+
 ```bash
 % eksctl create cluster --name sandbox --region ap-northeast-1 \
   --zones ap-northeast-1a,ap-northeast-1c --nodes 2 --nodes-min 2 --nodes-max 2 \
   --node-type t3.medium --node-zones ap-northeast-1a
 ```
 
+```bash
+% eksctl get cluster | bat -l json
+```
+
 ## Helm install
+
 ```bash
 % kubectl config get-contexts
 % kubectl create serviceaccount tiller -n kube-system
