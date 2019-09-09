@@ -1,0 +1,26 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: vpc-sample
+  region: ap-northeast-1
+
+vpc:
+  id: "vpc-06059ad0635a12e86"
+  cidr: "10.0.0.0/16"
+  subnets:
+    public:
+      ap-northeast-1a:
+        id: "subnet-004a4c445b1731440"
+        cidr: "10.0.1.0/24"
+      ap-northeast-1c:
+        id: "subnet-04e857fb2f1902d30"
+        cidr: "10.0.2.0/24"
+      ap-northeast-1d:
+        id: "subnet-034d814868f33b963"
+        cidr: "10.0.3.0/24"
+
+nodeGroups:
+  - name: vpc-sample-ng
+    instanceType: m3.medium
+    desiredCapacity: 2
